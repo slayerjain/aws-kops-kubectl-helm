@@ -3,7 +3,7 @@ MAINTAINER Shubham Jain <shubhamkjain@outlook.com>
 
 RUN apk add --update --no-cache ca-certificates git
 
-ARG VERSION=v2.8.2
+ARG VERSION=v2.12.3
 ARG FILENAME=helm-${VERSION}-linux-amd64.tar.gz
 
 WORKDIR /
@@ -16,6 +16,8 @@ FROM alpine
 
 ENV KOPS_VERSION=1.8.1
 ENV KUBECTL_VERSION=v1.10.0
+
+COPY --from=build  /tmp/linux-amd64 /usr/local/bin
 
 RUN apk add --update \
     ca-certificates \
