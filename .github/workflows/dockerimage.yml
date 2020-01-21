@@ -1,0 +1,23 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Docker Publish
+      uses: manusa/actions-publish-docker@v1.0.1
+      with:
+        # Name of the Docker image
+        name: aws-kops-kubectl-helm
+        # Tag for the Docker image
+        tag: $GITHUB_ACTION
+        # Username for Docker registry
+        username: slayerjain
+        # Password for Docker registry
+        password: ${{ secrets.dockerPasssword }}
